@@ -8,7 +8,9 @@ import com.school.hei.repository.UploadRepository;
 import com.school.hei.repository.model.JUpload;
 import java.io.File;
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -43,5 +45,9 @@ public class UploadService {
             .build();
 
     return mapper.toModel(repository.save(jUpload));
+  }
+
+  public List<Upload> getAllUploads() {
+    return repository.findAll().stream().map(mapper::toModel).collect(Collectors.toList());
   }
 }
