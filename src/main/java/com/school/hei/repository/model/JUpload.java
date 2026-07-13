@@ -3,7 +3,6 @@ package com.school.hei.repository.model;
 import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.UUID;
-
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
