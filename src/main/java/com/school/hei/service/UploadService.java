@@ -7,6 +7,7 @@ import com.school.hei.model.Upload;
 import com.school.hei.repository.UploadRepository;
 import com.school.hei.repository.model.JUpload;
 import java.io.File;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -45,6 +46,10 @@ public class UploadService {
             .build();
 
     return mapper.toModel(repository.save(jUpload));
+  }
+
+  public String getPresignedUrl(String bucketKey) {
+    return bucketComponent.presign(bucketKey, Duration.ofMinutes(10)).toString();
   }
 
   public List<Upload> getAllUploads() {

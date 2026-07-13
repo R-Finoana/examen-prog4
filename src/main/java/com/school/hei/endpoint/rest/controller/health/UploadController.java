@@ -22,7 +22,7 @@ public class UploadController {
         try {
             Upload upload = uploadService.uploadFile(request);
             String bucketKey = "uploads/" + upload.id() + "_" + upload.fileName();
-            String presignedUrl = uploadService.uploadFile(bucketKey);
+            String presignedUrl = uploadService.getPresignedUrl(bucketKey);
 
             emailService.sendUploadConfirmation(
                     request.email(),
@@ -41,5 +41,4 @@ public class UploadController {
     public ResponseEntity<List<Upload>> getAllUploads() {
         return ResponseEntity.ok(uploadService.getAllUploads());
     }
-}
 }
